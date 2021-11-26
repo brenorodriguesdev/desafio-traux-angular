@@ -1,0 +1,34 @@
+<h1 mat-dialog-title>Atualizar Categoria</h1>
+<div mat-dialog-content>
+
+
+  <form style="margin-right: 1rem;" [formGroup]="updateCategoryForm" (submit)="submit($event)"> 
+
+    <div style="font-size: 11px; margin-bottom: 1rem;">
+      <b style="margin-left: 0.5rem;">Caro Visitante,</b>
+      <p style="margin-left: 0.5rem;">Para atualizar a categoria, digite os dados solicitados nos campos indicados.</p>
+    </div>
+
+    <mat-divider></mat-divider>
+    
+    <p>
+      <mat-form-field style="width: 100%;">
+        <input type="text" matInput placeholder="Digite o nome" formControlName="name">
+      </mat-form-field>
+    </p>
+
+    
+    <p>
+        <mat-form-field style="width: 100%;">
+          <input type="text" matInput placeholder="Digite a image" formControlName="image">
+        </mat-form-field>
+      </p>
+
+
+    <button mat-raised-button color="primary" type="submit" style="width: 100%;">Atualizar</button>
+
+    </form>
+
+
+
+</div>
