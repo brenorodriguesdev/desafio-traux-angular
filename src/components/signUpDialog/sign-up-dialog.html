@@ -1,0 +1,40 @@
+<h1 mat-dialog-title>Registro de conta</h1>
+<div mat-dialog-content>
+
+
+  <form style="margin-right: 1rem;" [formGroup]="registerForm" (submit)="submit($event)"> 
+
+    <div style="font-size: 11px; margin-bottom: 1rem;">
+      <b style="margin-left: 0.5rem;">Caro Visitante,</b>
+      <p style="margin-left: 0.5rem;">Para criar uma conta, digite os dados solicitados nos campos indicados.</p>
+    </div>
+
+    <mat-divider></mat-divider>
+    
+    <p>
+      <mat-form-field style="width: 100%; margin-top: 2rem;">
+        <input type="text" matInput placeholder="Digite seu Nome" formControlName="name">
+      </mat-form-field>
+    </p>
+
+    <p>
+      <mat-form-field style="width: 100%;">
+        <input type="text" matInput placeholder="Digite seu Usuário" formControlName="username">
+      </mat-form-field>
+    </p>
+
+    
+    <p>
+        <mat-form-field style="width: 100%;">
+          <input type="password" matInput placeholder="Digite sua Senha" formControlName="password">
+        </mat-form-field>
+      </p>
+
+
+    <button mat-raised-button color="primary" type="submit" style="width: 100%;">Cadastrar</button>
+
+    </form>
+
+
+
+</div>
