@@ -10,8 +10,13 @@ export class UpdateProductService {
 
   constructor(private http: HttpClient) { }
 
-  sign(data: UpdateProductModel) {
-    return this.http.put<void>(environment.url + 'product', data)
+  update(data: UpdateProductModel) {
+    const token = localStorage.getItem("token")
+    return this.http.put<void>(environment.url + 'product', data, {
+      headers: {
+        authorization: 'Bearer ' + token
+      }
+    })
   }
 
 }

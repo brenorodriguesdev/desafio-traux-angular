@@ -11,8 +11,13 @@ export class CreateProductService {
 
   constructor(private http: HttpClient) { }
 
-  sign(data: CreateProductModel) {
-    return this.http.post<ProductModel>(environment.url + 'product', data)
+  create(data: CreateProductModel) {
+    const token = localStorage.getItem("token")
+    return this.http.post<ProductModel>(environment.url + 'product', data, {
+      headers: {
+        authorization: 'Bearer ' + token
+      }
+    })
   }
 
 }
