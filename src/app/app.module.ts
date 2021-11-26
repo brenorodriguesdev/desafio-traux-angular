@@ -34,6 +34,15 @@ import { AuthenticationGuard } from 'src/guards/authentication';
 import { IsAuthenticationGuard } from 'src/guards/isAuthentication';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { NavbarComponent } from 'src/components/ navbar/navbar';
+import { SignUpService } from 'src/services/login/sign-up';
+import { CreateCategoryService } from 'src/services/category/create-category';
+import { UpdateCategoryService } from 'src/services/category/update-category';
+import { DeleteByIdCategoryService } from 'src/services/category/delete-by-id-category';
+import { GetAllCategoryService } from 'src/services/category/get-all-category';
+import { CreateProductService } from 'src/services/product/create-product';
+import { UpdateProductService } from 'src/services/product/update-product';
+import { DeleteByIdProductService } from 'src/services/product/delete-by-id-product';
+import { GetAllProductService } from 'src/services/product/get-all-product';
 
 @NgModule({
   declarations: [
@@ -68,7 +77,19 @@ import { NavbarComponent } from 'src/components/ navbar/navbar';
     MatSnackBarModule,
     MatSidenavModule
   ],
-  providers: [SignInService, AuthenticationGuard, IsAuthenticationGuard],
+  providers: [
+    SignInService, 
+    SignUpService,
+    CreateCategoryService,
+    UpdateCategoryService,
+    DeleteByIdCategoryService,
+    GetAllCategoryService,
+    CreateProductService,
+    UpdateProductService,
+    DeleteByIdProductService,
+    GetAllProductService,
+    AuthenticationGuard, 
+    IsAuthenticationGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
