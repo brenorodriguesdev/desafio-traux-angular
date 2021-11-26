@@ -3,19 +3,19 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 
 @Component({
-    selector: 'sign-up-dialog',
-    templateUrl: 'sign-up-dialog.html',
+    selector: 'update-product-dialog',
+    templateUrl: 'update-product-dialog.html',
   })
-  export class SignUpDialog {
+  export class UpdateProductDialog {
     constructor(
-      public dialogRef: MatDialogRef<SignUpDialog>,
+      public dialogRef: MatDialogRef<UpdateProductDialog>,
       @Inject(MAT_DIALOG_DATA) public data: any,
     ) {}
 
-    registerForm: FormGroup = new FormGroup({
+    updateProductForm: FormGroup = new FormGroup({
+      idCategory: new FormControl('', Validators.required),
       name: new FormControl('', Validators.required),
-      username: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.required),
+      image: new FormControl('', Validators.required),
     });
   
   
@@ -23,7 +23,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
     submit(event: any) {
       event.preventDefault();
   
-      if (this.registerForm.valid) {
+      if (this.updateProductForm.valid) {
         console.log('xd')
       }
   

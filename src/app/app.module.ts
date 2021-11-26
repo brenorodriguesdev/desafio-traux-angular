@@ -15,16 +15,20 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SignInPage } from 'src/pages/signIn/sign-in';
-import { SignUpDialog } from 'src/components/sign-up-dialog';
+import { SignUpDialog } from 'src/components/signUpDialog/sign-up-dialog';
 import { ProductPage } from 'src/pages/product/product';
 import { MatIconModule } from '@angular/material/icon';
+import { CreateProductDialog } from 'src/components/createProductDialog/create-product-dialog';
+import { UpdateProductDialog } from 'src/components/updateProductDialog/update-product-dialog';
 
 @NgModule({
   declarations: [
     AppComponent,
     SignInPage,
     ProductPage,
-    SignUpDialog
+    SignUpDialog,
+    CreateProductDialog,
+    UpdateProductDialog
   ],
   imports: [
     ReactiveFormsModule,

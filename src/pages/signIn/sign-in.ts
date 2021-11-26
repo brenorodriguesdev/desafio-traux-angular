@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { SignUpDialog } from 'src/components/sign-up-dialog';
+import { SignUpDialog } from 'src/components/signUpDialog/sign-up-dialog';
 
 @Component({
   selector: 'sign-in',
