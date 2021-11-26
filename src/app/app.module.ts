@@ -27,6 +27,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { CategoryPage } from 'src/pages/category.ts/category';
 import { CreateCategoryDialog } from 'src/components/createCategoryDialog/create-category-dialog';
 import { UpdateCategoryDialog } from 'src/components/updateCategoryDialog/update-category-dialog';
+import { HttpClientModule } from '@angular/common/http';
+import { SignInService } from 'src/services/login/sign-in';
 
 @NgModule({
   declarations: [
@@ -55,9 +57,10 @@ import { UpdateCategoryDialog } from 'src/components/updateCategoryDialog/update
     MatFormFieldModule,
     MatSelectModule,
     MatOptionModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [SignInService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
