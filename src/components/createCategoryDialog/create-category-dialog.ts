@@ -12,7 +12,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
       @Inject(MAT_DIALOG_DATA) public data: any,
     ) {}
 
-    createDialogForm: FormGroup = new FormGroup({
+    createCategoryForm: FormGroup = new FormGroup({
       name: new FormControl('', Validators.required),
       image: new FormControl('', Validators.required),
     });
@@ -21,7 +21,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
     submit(event: any) {
       event.preventDefault();
   
-      if (this.createDialogForm.valid) {
+      if (this.createCategoryForm.valid) {
         console.log('xd')
       }
   

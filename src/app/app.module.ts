@@ -24,15 +24,21 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { CategoryPage } from 'src/pages/category.ts/category';
+import { CreateCategoryDialog } from 'src/components/createCategoryDialog/create-category-dialog';
+import { UpdateCategoryDialog } from 'src/components/updateCategoryDialog/update-category-dialog';
 
 @NgModule({
   declarations: [
     AppComponent,
     SignInPage,
     ProductPage,
+    CategoryPage,
     SignUpDialog,
     CreateProductDialog,
-    UpdateProductDialog
+    UpdateProductDialog,
+    CreateCategoryDialog,
+    UpdateCategoryDialog
   ],
   imports: [
     ReactiveFormsModule,
