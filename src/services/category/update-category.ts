@@ -12,7 +12,7 @@ export class UpdateCategoryService {
 
     deleteById(data: CategoryModel) {
         const token = localStorage.getItem("token")
-        return this.http.put<CategoryModel[]>(environment.url + 'category', data, {
+        return this.http.put<void>(environment.url + 'category', data, {
             headers: {
                 authorization: 'Bearer ' + token
             }

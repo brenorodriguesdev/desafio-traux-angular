@@ -12,7 +12,7 @@ export class DeleteByIdCategoryService {
 
     deleteById(id: number) {
         const token = localStorage.getItem("token")
-        return this.http.delete<CategoryModel[]>(environment.url + 'category/' + id, {
+        return this.http.delete<void>(environment.url + 'category/' + id, {
             headers: {
                 authorization: 'Bearer ' + token
             }
