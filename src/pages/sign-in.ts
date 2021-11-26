@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { SignUpDialog } from 'src/components/sign-up-dialog';
 
 @Component({
   selector: 'sign-in',
@@ -7,6 +9,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./sign-in.scss']
 })
 export class SignInPage {
+
+  constructor(public dialog: MatDialog) { }
 
   loginForm: FormGroup = new FormGroup({
     username: new FormControl('', Validators.required),
@@ -23,5 +27,17 @@ export class SignInPage {
     }
 
   }
+
+  openSignUpDialog(): void {
+    const dialogRef = this.dialog.open(SignUpDialog, {
+      width: '30rem',
+      data: {},
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+
+    });
+  }
+
 
 }
