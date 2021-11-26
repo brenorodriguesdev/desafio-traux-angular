@@ -1,6 +1,8 @@
 import { Component, Inject, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { CreateCategoryService } from "src/services/category/create-category";
 
 @Component({
     selector: 'create-category-dialog',
@@ -10,19 +12,32 @@ import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
     constructor(
       public dialogRef: MatDialogRef<CreateCategoryDialog>,
       @Inject(MAT_DIALOG_DATA) public data: any,
+      private readonly createCategoryService: CreateCategoryService,
+      private _snackBar: MatSnackBar
     ) {}
 
     createCategoryForm: FormGroup = new FormGroup({
       name: new FormControl('', Validators.required),
       image: new FormControl('', Validators.required),
     });
+
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action);
+  }
   
+    errorMessage(status: number) {
+      if (!status || status == 404 || status == 500)
+        this.openSnackBar("Tente novamente mais tarde...", "Fechar");
+    }
   
     submit(event: any) {
       event.preventDefault();
   
       if (this.createCategoryForm.valid) {
-        console.log('xd')
+        this.createCategoryService.create(this.createCategoryForm.value).subscribe(category => {
+          this.openSnackBar("Categoria cadastrada!", "Fechar");
+        }, error => this.errorMessage(error.status))
       }
   
     }

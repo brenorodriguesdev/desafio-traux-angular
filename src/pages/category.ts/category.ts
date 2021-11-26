@@ -1,32 +1,37 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { CreateCategoryDialog } from 'src/components/createCategoryDialog/create-category-dialog';
 import { UpdateCategoryDialog } from 'src/components/updateCategoryDialog/update-category-dialog';
-
-
-const ELEMENT_DATA: any[] = [
-    { id: 1, name: 'category 1', image: '1.png' }
-];
+import { CategoryModel } from 'src/models/category/category';
+import { DeleteByIdCategoryService } from 'src/services/category/delete-by-id-category';
+import { GetAllCategoryService } from 'src/services/category/get-all-category';
 
 @Component({
     selector: 'category',
     templateUrl: './category.html',
     styleUrls: ['./category.scss']
 })
-export class CategoryPage implements AfterViewInit {
-    constructor(public dialog: MatDialog) { }
-    dataSource = new MatTableDataSource<any>(ELEMENT_DATA);
+export class CategoryPage implements AfterViewInit, OnInit {
+    constructor(
+        public dialog: MatDialog,
+        private readonly getAllCategoryService: GetAllCategoryService,
+        private readonly deleteByIdCategoryService: DeleteByIdCategoryService) { }
+    dataSource = new MatTableDataSource<CategoryModel>();
 
     @ViewChild(MatPaginator)
     paginator!: MatPaginator;
 
     displayedColumns: string[] = ['add', 'id', 'name', 'image', 'edit', 'delete'];
 
+    ngOnInit() {
+        this.getAllCategoryService.get().subscribe(categories => this.dataSource.data = categories)
+    }
+
     ngAfterViewInit() {
         this.dataSource.paginator = this.paginator;
-      }
+    }
 
     openCreateCategoryDialog(): void {
         const dialogRef = this.dialog.open(CreateCategoryDialog, {
@@ -35,7 +40,7 @@ export class CategoryPage implements AfterViewInit {
         });
 
         dialogRef.afterClosed().subscribe(result => {
-
+            this.getAllCategoryService.get().subscribe(categories => this.dataSource.data = categories)
         });
     }
 
@@ -46,8 +51,12 @@ export class CategoryPage implements AfterViewInit {
         });
 
         dialogRef.afterClosed().subscribe(result => {
-
+            this.getAllCategoryService.get().subscribe(categories => this.dataSource.data = categories)
         });
+    }
+
+    deleteById(id: number) {
+        this.deleteByIdCategoryService.delete(id).subscribe(result => this.getAllCategoryService.get().subscribe(categories => this.dataSource.data = categories))
     }
 }
 

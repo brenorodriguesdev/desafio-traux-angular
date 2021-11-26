@@ -1,32 +1,36 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { CreateProductDialog } from 'src/components/createProductDialog/create-product-dialog';
 import { UpdateProductDialog } from 'src/components/updateProductDialog/update-product-dialog';
-
-
-const ELEMENT_DATA: any[] = [
-    { id: 1, category: 'category 1', name: 'product 1', image: '1.png' }
-];
+import { ProductModel } from 'src/models/product/product';
+import { DeleteByIdProductService } from 'src/services/product/delete-by-id-product';
+import { GetAllProductService } from 'src/services/product/get-all-product';
 
 @Component({
     selector: 'product',
     templateUrl: './product.html',
     styleUrls: ['./product.scss']
 })
-export class ProductPage implements AfterViewInit {
-    constructor(public dialog: MatDialog) { }
-    dataSource = new MatTableDataSource<any>(ELEMENT_DATA);
+export class ProductPage implements AfterViewInit, OnInit {
+    constructor(public dialog: MatDialog, 
+        private readonly getAllProductService: GetAllProductService,
+        private readonly deleteByIdProductService: DeleteByIdProductService) { }
+    dataSource = new MatTableDataSource<ProductModel>();
 
     @ViewChild(MatPaginator)
     paginator!: MatPaginator;
 
     displayedColumns: string[] = ['add', 'id', 'category', 'name', 'image', 'edit', 'delete'];
 
+    ngOnInit() {
+        this.getAllProductService.get().subscribe(products => this.dataSource.data = products)
+    }
+
     ngAfterViewInit() {
         this.dataSource.paginator = this.paginator;
-      }
+    }
 
     openCreateProductDialog(): void {
         const dialogRef = this.dialog.open(CreateProductDialog, {
@@ -35,7 +39,7 @@ export class ProductPage implements AfterViewInit {
         });
 
         dialogRef.afterClosed().subscribe(result => {
-
+            this.getAllProductService.get().subscribe(products => this.dataSource.data = products)
         });
     }
 
@@ -46,8 +50,12 @@ export class ProductPage implements AfterViewInit {
         });
 
         dialogRef.afterClosed().subscribe(result => {
-
+            this.getAllProductService.get().subscribe(products => this.dataSource.data = products)
         });
+    }
+
+    deleteById(id: number) {
+        this.deleteByIdProductService.delete(id).subscribe(result =>  this.getAllProductService.get().subscribe(products => this.dataSource.data = products))
     }
 }
 

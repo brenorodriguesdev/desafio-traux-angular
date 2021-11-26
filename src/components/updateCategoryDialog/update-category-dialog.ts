@@ -1,34 +1,49 @@
 import { Component, Inject } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { UpdateCategoryService } from "src/services/category/update-category";
 
 @Component({
-    selector: 'update-category-dialog',
-    templateUrl: 'update-category-dialog.html',
-  })
-  export class UpdateCategoryDialog {
-    constructor(
-      public dialogRef: MatDialogRef<UpdateCategoryDialog>,
-      @Inject(MAT_DIALOG_DATA) public data: any,
-    ) {}
+  selector: 'update-category-dialog',
+  templateUrl: 'update-category-dialog.html',
+})
+export class UpdateCategoryDialog {
+  constructor(
+    public dialogRef: MatDialogRef<UpdateCategoryDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private readonly updateCategoryService: UpdateCategoryService,
+    private _snackBar: MatSnackBar
+  ) { }
 
-    updateCategoryForm: FormGroup = new FormGroup({
-      name: new FormControl('', Validators.required),
-      image: new FormControl('', Validators.required),
-    });
-  
-  
-  
-    submit(event: any) {
-      event.preventDefault();
-  
-      if (this.updateCategoryForm.valid) {
-        console.log('xd')
-      }
-  
-    }
-  
-    onNoClick(): void {
-      this.dialogRef.close();
-    }
+  updateCategoryForm: FormGroup = new FormGroup({
+    name: new FormControl('', Validators.required),
+    image: new FormControl('', Validators.required),
+  });
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action);
   }
+
+  errorMessage(status: number) {
+    if (!status || status == 404 || status == 500)
+      this.openSnackBar("Tente novamente mais tarde...", "Fechar");
+  }
+
+
+  submit(event: any) {
+    event.preventDefault();
+
+    if (this.updateCategoryForm.valid) {
+      const { name, image } = this.updateCategoryForm.value
+      this.updateCategoryService.update({ id: this.data, name, image }).subscribe(result => {
+        this.openSnackBar("Categoria atualizada!", "Fechar");
+      }, error => this.errorMessage(error.status))
+    }
+
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+}
