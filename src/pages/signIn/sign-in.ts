@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { SignUpDialog } from 'src/components/signUpDialog/sign-up-dialog';
+import { SignInService } from 'src/services/login/sign-in';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'sign-in',
@@ -10,7 +12,7 @@ import { SignUpDialog } from 'src/components/signUpDialog/sign-up-dialog';
 })
 export class SignInPage {
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, private readonly signInService: SignInService, private _snackBar: MatSnackBar) { }
 
   loginForm: FormGroup = new FormGroup({
     username: new FormControl('', Validators.required),
@@ -18,12 +20,25 @@ export class SignInPage {
   });
 
 
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action);
+  }
 
+  errorMessage(status: number) {
+    if (status == 401)
+      this.openSnackBar("Usuário ou senha inválidos", "Fechar");
+    if (!status || status == 404 || status == 500)
+      this.openSnackBar("Tente novamente mais tarde...", "Fechar");
+  }
   submit(event: any) {
     event.preventDefault();
 
     if (this.loginForm.valid) {
-      console.log('xd')
+      const { username, password } = this.loginForm.value
+      this.signInService.sign({
+        username,
+        password
+      }).subscribe(token => console.log(token), error => this.errorMessage(error.status))
     }
 
   }

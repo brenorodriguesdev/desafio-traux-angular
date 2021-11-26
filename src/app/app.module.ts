@@ -29,6 +29,8 @@ import { CreateCategoryDialog } from 'src/components/createCategoryDialog/create
 import { UpdateCategoryDialog } from 'src/components/updateCategoryDialog/update-category-dialog';
 import { HttpClientModule } from '@angular/common/http';
 import { SignInService } from 'src/services/login/sign-in';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { AuthenticationGuard } from 'src/guards/authentication';
 
 @NgModule({
   declarations: [
@@ -58,9 +60,10 @@ import { SignInService } from 'src/services/login/sign-in';
     MatSelectModule,
     MatOptionModule,
     MatPaginatorModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSnackBarModule
   ],
-  providers: [SignInService],
+  providers: [SignInService, AuthenticationGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
