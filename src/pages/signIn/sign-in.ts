@@ -4,6 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { SignUpDialog } from 'src/components/signUpDialog/sign-up-dialog';
 import { SignInService } from 'src/services/login/sign-in';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'sign-in',
@@ -12,7 +13,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class SignInPage {
 
-  constructor(public dialog: MatDialog, private readonly signInService: SignInService, private _snackBar: MatSnackBar) { }
+  constructor(public dialog: MatDialog, 
+    private readonly signInService: SignInService, 
+    private _snackBar: MatSnackBar, 
+    private router: Router) { }
 
   loginForm: FormGroup = new FormGroup({
     username: new FormControl('', Validators.required),
@@ -38,7 +42,11 @@ export class SignInPage {
       this.signInService.sign({
         username,
         password
-      }).subscribe(token => console.log(token), error => this.errorMessage(error.status))
+      }).subscribe(token => {
+        console.log(token)
+        localStorage.setItem("token", token)
+        this.router.navigateByUrl("/product");
+      }, error => this.errorMessage(error.status))
     }
 
   }

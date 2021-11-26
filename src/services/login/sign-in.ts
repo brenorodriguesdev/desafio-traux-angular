@@ -11,7 +11,7 @@ export class SignInService {
   constructor(private http: HttpClient) { }
 
   sign(data: SignInModel) {
-    return this.http.post(environment.url + 'signIn', data)
+    return this.http.post<string>(environment.url + 'signIn', data)
   }
 
 }

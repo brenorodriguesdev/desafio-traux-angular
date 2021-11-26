@@ -31,6 +31,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SignInService } from 'src/services/login/sign-in';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { AuthenticationGuard } from 'src/guards/authentication';
+import { IsAuthenticationGuard } from 'src/guards/isAuthentication';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,7 @@ import { AuthenticationGuard } from 'src/guards/authentication';
     HttpClientModule,
     MatSnackBarModule
   ],
-  providers: [SignInService, AuthenticationGuard],
+  providers: [SignInService, AuthenticationGuard, IsAuthenticationGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
