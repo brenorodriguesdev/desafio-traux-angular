@@ -6,14 +6,18 @@
 
     <div style="font-size: 11px; margin-bottom: 1rem;">
       <b style="margin-left: 0.5rem;">Caro Visitante,</b>
-      <p style="margin-left: 0.5rem;">Para atualizar um produto, digite os dados solicitados nos campos indicados.</p>
+      <p style="margin-left: 0.5rem;">Para atualizar o produto, digite os dados solicitados nos campos indicados.</p>
     </div>
 
     <mat-divider></mat-divider>
     
     <p>
-      <mat-form-field style="width: 100%; margin-top: 2rem;">
-        <input type="text" matInput placeholder="Id da Categoria" formControlName="idCategory">
+      <mat-form-field appearance="fill" style="width: 100%; margin-top: 2rem;">
+        <mat-label>Selecione a Categoria</mat-label>
+        <mat-select formControlName="idCategory">
+          <mat-option value="1">Category 1</mat-option>
+          <mat-option value="2">Category 2</mat-option>
+        </mat-select>
       </mat-form-field>
     </p>
 

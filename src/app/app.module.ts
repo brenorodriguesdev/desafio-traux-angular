@@ -20,6 +20,10 @@ import { ProductPage } from 'src/pages/product/product';
 import { MatIconModule } from '@angular/material/icon';
 import { CreateProductDialog } from 'src/components/createProductDialog/create-product-dialog';
 import { UpdateProductDialog } from 'src/components/updateProductDialog/update-product-dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatOptionModule } from '@angular/material/core';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -41,7 +45,11 @@ import { UpdateProductDialog } from 'src/components/updateProductDialog/update-p
     MatDividerModule,
     MatDialogModule,
     MatTableModule,
-    MatIconModule
+    MatIconModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatOptionModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

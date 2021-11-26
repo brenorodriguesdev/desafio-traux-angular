@@ -1,4 +1,4 @@
-import { Component, Inject } from "@angular/core";
+import { Component, Inject, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 
@@ -6,7 +6,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
     selector: 'create-product-dialog',
     templateUrl: 'create-product-dialog.html',
   })
-  export class CreateProductDialog {
+  export class CreateProductDialog implements OnInit {
     constructor(
       public dialogRef: MatDialogRef<CreateProductDialog>,
       @Inject(MAT_DIALOG_DATA) public data: any,
@@ -17,7 +17,6 @@ import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
       name: new FormControl('', Validators.required),
       image: new FormControl('', Validators.required),
     });
-  
   
   
     submit(event: any) {
@@ -31,5 +30,9 @@ import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
   
     onNoClick(): void {
       this.dialogRef.close();
+    }
+
+    ngOnInit() {
+      console.log('xasd')
     }
   }
