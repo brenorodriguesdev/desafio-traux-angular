@@ -10,7 +10,7 @@ export class DeleteByIdCategoryService {
 
     constructor(private http: HttpClient) { }
 
-    deleteById(id: number) {
+    delete(id: number) {
         const token = localStorage.getItem("token")
         return this.http.delete<void>(environment.url + 'category/' + id, {
             headers: {

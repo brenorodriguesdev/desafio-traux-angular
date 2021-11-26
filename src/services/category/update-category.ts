@@ -10,7 +10,7 @@ export class UpdateCategoryService {
 
     constructor(private http: HttpClient) { }
 
-    deleteById(data: CategoryModel) {
+    update(data: CategoryModel) {
         const token = localStorage.getItem("token")
         return this.http.put<void>(environment.url + 'category', data, {
             headers: {
