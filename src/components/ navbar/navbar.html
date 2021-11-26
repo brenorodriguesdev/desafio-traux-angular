@@ -1,0 +1,44 @@
+<div class="navbar">
+
+    
+    <ul>
+
+
+      <li>
+        <div class="menuButton">
+          <button mat-button color="primary">
+            Página Inicial
+          </button>
+          <mat-icon aria-hidden="false" color="primary">home</mat-icon>
+        </div>
+      </li>
+
+      <li>
+        <div class="menuButton">
+          <button mat-button color="primary" (click)="goTo('/category')">
+            Categorias
+          </button>
+          <mat-icon aria-hidden="false" aria-label="category" color="primary">category</mat-icon>
+        </div>
+      </li>
+      
+      <li>
+        <div class="menuButton">
+          <button mat-button color="primary" (click)="goTo('/product')"> 
+            Produtos
+          </button>
+          <mat-icon aria-hidden="false" aria-label="category" color="primary">category</mat-icon>
+        </div>
+      </li>
+
+      <li class="logoutButton">
+        <div class="menuButton">
+          <button mat-button color="primary" (click)="logout()">
+            Sair
+          </button>
+          <mat-icon aria-hidden="false" aria-label="logout" color="primary">logout</mat-icon>
+        </div>
+      </li>
+
+    </ul>
+  </div>

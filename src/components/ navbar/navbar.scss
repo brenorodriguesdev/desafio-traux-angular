@@ -1,0 +1,27 @@
+.navbar {
+    display: flex;
+    width: 15vw;
+    height: 100vh;
+    margin-right: 5rem;
+    border: 0.5px solid #F0F0F0;
+    border-radius: 5px;
+
+    ul {
+        display: flex;
+        flex-direction: column;
+        align-self: center;
+    }
+}
+
+
+.menuButton {
+    display: flex;
+    align-items: center;
+    margin-top: 0.5em;
+    margin-bottom: 0.5rem;
+
+    mat-icon {
+       position: absolute;
+       left: 10vw;
+    }
+}

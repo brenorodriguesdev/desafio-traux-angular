@@ -2,10 +2,18 @@ table {
     width: 65vw;
 }
 
+.container {
+    width: 65vw;
+    align-self: center;
+}
+
 .main {
     width: 100vw;
     height: 100vh;
     display: flex;
-    justify-content: center;
-    align-items: center;
+}
+
+* {
+    padding: 0;
+    margin: 0;
 }

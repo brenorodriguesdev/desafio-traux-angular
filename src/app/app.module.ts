@@ -32,6 +32,8 @@ import { SignInService } from 'src/services/login/sign-in';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { AuthenticationGuard } from 'src/guards/authentication';
 import { IsAuthenticationGuard } from 'src/guards/isAuthentication';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import { NavbarComponent } from 'src/components/ navbar/navbar';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,8 @@ import { IsAuthenticationGuard } from 'src/guards/isAuthentication';
     CreateProductDialog,
     UpdateProductDialog,
     CreateCategoryDialog,
-    UpdateCategoryDialog
+    UpdateCategoryDialog,
+    NavbarComponent
   ],
   imports: [
     ReactiveFormsModule,
@@ -62,7 +65,8 @@ import { IsAuthenticationGuard } from 'src/guards/isAuthentication';
     MatOptionModule,
     MatPaginatorModule,
     HttpClientModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatSidenavModule
   ],
   providers: [SignInService, AuthenticationGuard, IsAuthenticationGuard],
   bootstrap: [AppComponent]
