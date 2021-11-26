@@ -14,11 +14,13 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SignInPage } from 'src/pages/sign-in';
+import { SignUpDialog } from 'src/components/sign-up-dialog';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SignInPage
+    SignInPage,
+    SignUpDialog
   ],
   imports: [
     ReactiveFormsModule,
