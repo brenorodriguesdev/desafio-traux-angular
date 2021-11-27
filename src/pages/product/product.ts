@@ -43,10 +43,10 @@ export class ProductPage implements AfterViewInit, OnInit {
         });
     }
 
-    openUpdateProductDialog(id: number): void {
+    openUpdateProductDialog(product: ProductModel): void {
         const dialogRef = this.dialog.open(UpdateProductDialog, {
             width: '30rem',
-            data: id,
+            data: product,
         });
 
         dialogRef.afterClosed().subscribe(result => {

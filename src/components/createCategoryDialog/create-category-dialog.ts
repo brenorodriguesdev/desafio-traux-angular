@@ -37,6 +37,7 @@ import { CreateCategoryService } from "src/services/category/create-category";
       if (this.createCategoryForm.valid) {
         this.createCategoryService.create(this.createCategoryForm.value).subscribe(category => {
           this.openSnackBar("Categoria cadastrada!", "Fechar");
+          this.dialogRef.close();
         }, error => this.errorMessage(error.status))
       }
   

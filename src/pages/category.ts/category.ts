@@ -44,10 +44,10 @@ export class CategoryPage implements AfterViewInit, OnInit {
         });
     }
 
-    openUpdateCategoryDialog(id: number): void {
+    openUpdateCategoryDialog(category: CategoryModel): void {
         const dialogRef = this.dialog.open(UpdateCategoryDialog, {
             width: '30rem',
-            data: id,
+            data: category,
         });
 
         dialogRef.afterClosed().subscribe(result => {
