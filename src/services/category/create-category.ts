@@ -13,7 +13,11 @@ export class CreateCategoryService {
 
     create(data: CreateCategoryModel) {
         const token = localStorage.getItem("token")
-        return this.http.post<CategoryModel>(environment.url + 'category', data, {
+        let formData = new FormData()
+        formData.append('name', data.name)
+        formData.append('image', data.image)
+
+        return this.http.post<CategoryModel>(environment.url + 'category', formData, {
             headers: {
                 authorization: 'Bearer ' + token
             }

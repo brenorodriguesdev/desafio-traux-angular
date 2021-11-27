@@ -42,6 +42,15 @@ import { CreateCategoryService } from "src/services/category/create-category";
       }
   
     }
+
+    onFileChange(event: any) {
+      if (event.target.files.length > 0) {
+        const file = event.target.files[0];
+        this.createCategoryForm.patchValue({
+          image: file
+        });
+      }
+    }
   
     onNoClick(): void {
       this.dialogRef.close();

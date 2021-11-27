@@ -13,7 +13,12 @@ export class CreateProductService {
 
   create(data: CreateProductModel) {
     const token = localStorage.getItem("token")
-    return this.http.post<ProductModel>(environment.url + 'product', data, {
+    let formData = new FormData()
+    formData.append('name', data.name)
+    formData.append('idCategory', data.idCategory.toString())
+    formData.append('image', data.image)
+
+    return this.http.post<ProductModel>(environment.url + 'product', formData, {
       headers: {
         authorization: 'Bearer ' + token
       }

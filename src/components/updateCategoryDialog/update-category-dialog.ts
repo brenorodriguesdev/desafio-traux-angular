@@ -51,6 +51,15 @@ export class UpdateCategoryDialog implements OnInit{
 
   }
 
+  onFileChange(event: any) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.updateCategoryForm.patchValue({
+        image: file
+      });
+    }
+  }
+
   onNoClick(): void {
     this.dialogRef.close();
   }

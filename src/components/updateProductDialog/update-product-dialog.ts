@@ -64,6 +64,15 @@ import { UpdateProductService } from "src/services/product/update-product";
       }
   
     }
+
+    onFileChange(event: any) {
+      if (event.target.files.length > 0) {
+        const file = event.target.files[0];
+        this.updateProductForm.patchValue({
+          image: file
+        });
+      }
+    }
   
     onNoClick(): void {
       this.dialogRef.close();

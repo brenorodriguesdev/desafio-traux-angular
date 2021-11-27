@@ -28,7 +28,7 @@
 
 
     <p>
-      <input type="file" formControlName="image" />
+      <input type="file" formControlName="image" (change)="onFileChange($event)" />
     </p>
 
 

@@ -55,6 +55,15 @@ export class CreateProductDialog implements OnInit {
 
   }
 
+  onFileChange(event: any) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.createProductForm.patchValue({
+        image: file
+      });
+    }
+  }
+
   onNoClick(): void {
     this.dialogRef.close();
   }

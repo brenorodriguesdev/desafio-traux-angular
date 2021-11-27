@@ -12,7 +12,13 @@ export class UpdateProductService {
 
   update(data: UpdateProductModel) {
     const token = localStorage.getItem("token")
-    return this.http.put<void>(environment.url + 'product', data, {
+    let formData = new FormData()
+    formData.append('id', data.id.toString())
+    formData.append('name', data.name)
+    formData.append('idCategory', data.idCategory.toString())
+    formData.append('image', data.image)
+
+    return this.http.put<void>(environment.url + 'product', formData, {
       headers: {
         authorization: 'Bearer ' + token
       }
