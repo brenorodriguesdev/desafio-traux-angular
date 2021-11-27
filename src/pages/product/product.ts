@@ -4,6 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { CreateProductDialog } from 'src/components/createProductDialog/create-product-dialog';
 import { UpdateProductDialog } from 'src/components/updateProductDialog/update-product-dialog';
+import { environment } from 'src/environments/environment';
 import { ProductModel } from 'src/models/product/product';
 import { DeleteByIdProductService } from 'src/services/product/delete-by-id-product';
 import { GetAllProductService } from 'src/services/product/get-all-product';
@@ -52,6 +53,13 @@ export class ProductPage implements AfterViewInit, OnInit {
         dialogRef.afterClosed().subscribe(result => {
             this.getAllProductService.get().subscribe(products => this.dataSource.data = products)
         });
+    }
+
+    openImage(image: string) {
+        window.open(
+            environment.urlImage + image,
+            '_blank' // <- This is what makes it open in a new window.
+          );
     }
 
     deleteById(id: number) {

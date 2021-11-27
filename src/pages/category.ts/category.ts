@@ -4,6 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { CreateCategoryDialog } from 'src/components/createCategoryDialog/create-category-dialog';
 import { UpdateCategoryDialog } from 'src/components/updateCategoryDialog/update-category-dialog';
+import { environment } from 'src/environments/environment';
 import { CategoryModel } from 'src/models/category/category';
 import { DeleteByIdCategoryService } from 'src/services/category/delete-by-id-category';
 import { GetAllCategoryService } from 'src/services/category/get-all-category';
@@ -53,6 +54,13 @@ export class CategoryPage implements AfterViewInit, OnInit {
         dialogRef.afterClosed().subscribe(result => {
             this.getAllCategoryService.get().subscribe(categories => this.dataSource.data = categories)
         });
+    }
+
+    openImage(image: string) {
+        window.open(
+            environment.urlImage + image,
+            '_blank' // <- This is what makes it open in a new window.
+          );
     }
 
     deleteById(id: number) {
