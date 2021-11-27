@@ -30,7 +30,7 @@ import { UpdateProductService } from "src/services/product/update-product";
     ngOnInit() {
       this.getAllCategoryService.get().subscribe(categories => this.categories = categories)
       this.updateProductForm = new FormGroup({
-        idCategory: new FormControl(this.data.category.id, Validators.required),
+        idCategory: new FormControl(this.data.category.id.toString(), Validators.required),
         name: new FormControl(this.data.name, Validators.required),
         image: new FormControl(this.data.image, Validators.required),
       });
