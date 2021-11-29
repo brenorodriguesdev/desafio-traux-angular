@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  url: 'http://localhost:4500/api/',
-  urlImage: 'http://localhost:4500/uploads/'
+  url: 'https://desafio-traux-nodejs.herokuapp.com/api/',
+  urlImage: 'https://desafio-traux-nodejs.herokuapp.com//uploads/'
 };
