@@ -11,7 +11,7 @@
 
     <mat-divider></mat-divider>
     
-    <p>
+    <p style="margin-top: 1rem;">
       <mat-form-field style="width: 100%;">
         <input type="text" matInput placeholder="Digite o nome" formControlName="name">
       </mat-form-field>
@@ -19,7 +19,7 @@
 
     
     <p>
-      <input type="file" formControlName="image" (change)="onFileChange($event)" />
+      <input type="file" formControlName="image" (change)="onFileChange($event)" name="image" id="image" />
     </p>
 
 

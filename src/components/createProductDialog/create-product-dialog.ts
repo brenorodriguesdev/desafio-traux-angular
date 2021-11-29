@@ -21,6 +21,7 @@ export class CreateProductDialog implements OnInit {
   ) { }
 
   categories: CategoryModel[] = []
+  image: any;
 
   createProductForm: FormGroup = new FormGroup({
     idCategory: new FormControl('', Validators.required),
@@ -44,10 +45,17 @@ export class CreateProductDialog implements OnInit {
   submit(event: any) {
     event.preventDefault();
 
-    if (this.createProductForm.valid) {
-      console.log(this.createProductForm.value)
+    if (!this.image) {
+      return this.openSnackBar("Selecione uma image!", "Fechar");
+    }
 
-      this.createProductService.create(this.createProductForm.value).subscribe(product => {
+    if (this.createProductForm.valid) {
+      const { idCategory, name } = this.createProductForm.value
+      this.createProductService.create({
+        idCategory,
+        name,
+        image: this.image
+      }).subscribe(product => {
         this.openSnackBar("Produto cadastrado!", "Fechar");
         this.dialogRef.close();
       }, error => this.errorMessage(error.status))
@@ -57,10 +65,7 @@ export class CreateProductDialog implements OnInit {
 
   onFileChange(event: any) {
     if (event.target.files.length > 0) {
-      const file = event.target.files[0];
-      this.createProductForm.patchValue({
-        image: file
-      });
+      this.image = event.target.files[0];
     }
   }
 

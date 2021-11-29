@@ -16,7 +16,6 @@ export class UpdateCategoryService {
         formData.append('id', data.id.toString())
         formData.append('name', data.name)
         formData.append('image', data.image)
-        console.log(data.image)
 
         return this.http.put<void>(environment.url + 'category', formData, {
             headers: {

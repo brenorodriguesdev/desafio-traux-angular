@@ -11,15 +11,18 @@
 
     <mat-divider></mat-divider>
     
-    <p>
+    <p style="margin-top: 1rem;">
       <mat-form-field style="width: 100%;">
         <input type="text" matInput placeholder="Digite o nome" formControlName="name">
       </mat-form-field>
     </p>
 
-    
     <p>
-      <input type="file" formControlName="image" (change)="onFileChange($event)" />
+      <mat-checkbox [(ngModel)]="updateImage" formControlName="updateImage">Alterar Imagem</mat-checkbox>
+    </p>
+    
+    <p *ngIf="updateImage">
+      <input type="file" (change)="onFileChange($event)" />
     </p>
 
 

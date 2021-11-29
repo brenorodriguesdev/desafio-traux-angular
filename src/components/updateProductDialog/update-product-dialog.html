@@ -28,7 +28,11 @@
 
 
     <p>
-      <input type="file" formControlName="image" (change)="onFileChange($event)" />
+      <mat-checkbox [(ngModel)]="updateImage" formControlName="updateImage">Alterar Imagem</mat-checkbox>
+    </p>
+
+    <p *ngIf="updateImage">
+      <input type="file" (change)="onFileChange($event)" />
     </p>
 
     <button mat-raised-button color="primary" type="submit" style="width: 100%;">Atualizar</button>

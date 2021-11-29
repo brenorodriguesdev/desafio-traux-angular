@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from "@angular/core";
+import { ChangeDetectorRef, Component, Inject, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
@@ -13,9 +13,10 @@ import { CreateCategoryService } from "src/services/category/create-category";
       public dialogRef: MatDialogRef<CreateCategoryDialog>,
       @Inject(MAT_DIALOG_DATA) public data: any,
       private readonly createCategoryService: CreateCategoryService,
-      private _snackBar: MatSnackBar
+      private _snackBar: MatSnackBar,
     ) {}
 
+    image: any;
     createCategoryForm: FormGroup = new FormGroup({
       name: new FormControl('', Validators.required),
       image: new FormControl('', Validators.required),
@@ -34,8 +35,15 @@ import { CreateCategoryService } from "src/services/category/create-category";
     submit(event: any) {
       event.preventDefault();
   
+      if (!this.image) {
+        return this.openSnackBar("Selecione uma image!", "Fechar");
+      }
+
       if (this.createCategoryForm.valid) {
-        this.createCategoryService.create(this.createCategoryForm.value).subscribe(category => {
+        this.createCategoryService.create({
+          name: this.createCategoryForm.value.name,
+          image: this.image
+        }).subscribe(category => {
           this.openSnackBar("Categoria cadastrada!", "Fechar");
           this.dialogRef.close();
         }, error => this.errorMessage(error.status))
@@ -45,10 +53,7 @@ import { CreateCategoryService } from "src/services/category/create-category";
 
     onFileChange(event: any) {
       if (event.target.files.length > 0) {
-        const file = event.target.files[0];
-        this.createCategoryForm.patchValue({
-          image: file
-        });
+        this.image = event.target.files[0];  
       }
     }
   

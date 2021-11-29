@@ -13,7 +13,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatDialogModule } from '@angular/material/dialog';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SignInPage } from 'src/pages/signIn/sign-in';
 import { SignUpDialog } from 'src/components/signUpDialog/sign-up-dialog';
 import { ProductPage } from 'src/pages/product/product';
@@ -43,6 +43,7 @@ import { CreateProductService } from 'src/services/product/create-product';
 import { UpdateProductService } from 'src/services/product/update-product';
 import { DeleteByIdProductService } from 'src/services/product/delete-by-id-product';
 import { GetAllProductService } from 'src/services/product/get-all-product';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { GetAllProductService } from 'src/services/product/get-all-product';
     NavbarComponent
   ],
   imports: [
+    FormsModule,
     ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
@@ -75,7 +77,8 @@ import { GetAllProductService } from 'src/services/product/get-all-product';
     MatPaginatorModule,
     HttpClientModule,
     MatSnackBarModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatCheckboxModule
   ],
   providers: [
     SignInService, 

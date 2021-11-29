@@ -21,10 +21,13 @@ import { UpdateProductService } from "src/services/product/update-product";
 
     categories: CategoryModel[] = []
 
+    updateImage: boolean = false;
+    image: any;
+
     updateProductForm: FormGroup = new FormGroup({
       idCategory: new FormControl('', Validators.required),
       name: new FormControl('', Validators.required),
-      image: new FormControl('', Validators.required),
+      updateImage: new FormControl(false),
     });
   
     ngOnInit() {
@@ -32,7 +35,7 @@ import { UpdateProductService } from "src/services/product/update-product";
       this.updateProductForm = new FormGroup({
         idCategory: new FormControl(this.data.category.id.toString(), Validators.required),
         name: new FormControl(this.data.name, Validators.required),
-        image: new FormControl(this.data.image, Validators.required),
+        updateImage: new FormControl(false),
       });
     }
 
@@ -48,13 +51,17 @@ import { UpdateProductService } from "src/services/product/update-product";
     submit(event: any) {
       event.preventDefault();
   
+      if (!this.image && this.updateImage) {
+        return this.openSnackBar("Selecione uma image!", "Fechar");
+      }
+
       if (this.updateProductForm.valid) {
-        const { name, image, idCategory } = this.updateProductForm.value
+        const { name, idCategory } = this.updateProductForm.value
 
         console.log(this.updateProductForm.value)
         this.updateProductService.update({
           name,
-          image,
+          image: this.updateImage ? this.image : null,
           idCategory,
           id: this.data.id
         }).subscribe(result => {
@@ -67,10 +74,7 @@ import { UpdateProductService } from "src/services/product/update-product";
 
     onFileChange(event: any) {
       if (event.target.files.length > 0) {
-        const file = event.target.files[0];
-        this.updateProductForm.patchValue({
-          image: file
-        });
+        this.image = event.target.files[0];
       }
     }
   
